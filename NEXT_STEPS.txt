@@ -1,0 +1,40 @@
+La aplicación está orientada completamente al cliente (customer-facing).
+
+Aquí está el análisis:
+
+🎯 Perspectiva: CLIENTE
+Funcionalidades de Cliente que tiene:
+✅ Explorar menú - Navegar catálogo de productos
+✅ Filtrar por categorías - Buscar lo que quiere
+✅ Ver detalles de productos - Precio, descripción, rating
+✅ Carrito de compras - Agregar/quitar items
+✅ Checkout - Proceso de compra completo
+✅ Confirmación de orden - Ver orden ID
+✅ Información del restaurante - About, Contacto
+✅ Responsivo móvil - Para usar en el teléfono
+
+Lo que NO tiene (Funcionalidades de Vendedor):
+❌ Panel administrativo
+❌ Gestión de productos/categorías
+❌ Gestión de órdenes (ver pedidos, cambiar estado)
+❌ Reportes de ventas
+❌ Estadísticas
+❌ Sistema de usuarios/autenticación
+❌ Inventario
+❌ Gestión de empleados
+
+
+🔄 Si quieres agregar funcionalidades de VENDEDOR:
+Podría crear:
+
+Panel Admin - /admin con:
+
+Dashboard de órdenes en tiempo real
+CRUD de productos
+Gestión de categorías
+Reportes de ventas
+Sistema de Autenticación - Login para admin
+
+Gestión de Órdenes - Ver estado, actualizar, aceptar/rechazar
+
+Analytics - Gráficos de ventas, productos más vendidos
