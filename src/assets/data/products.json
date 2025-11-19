@@ -1,0 +1,137 @@
+[
+  {
+    "id": 1,
+    "name": "Ensalada César",
+    "categoryId": 1,
+    "price": 8.99,
+    "description": "Ensalada fresca con pollo, queso parmesano y aderezo César casero",
+    "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop",
+    "rating": 4.8
+  },
+  {
+    "id": 2,
+    "name": "Tabla de Quesos",
+    "categoryId": 1,
+    "price": 12.99,
+    "description": "Selección de quesos artesanales acompañados de frutos secos y pan",
+    "image": "https://images.unsplash.com/photo-1452857918250-f7fb0e57fba6?w=400&h=300&fit=crop",
+    "rating": 4.9
+  },
+  {
+    "id": 3,
+    "name": "Alitas BBQ",
+    "categoryId": 1,
+    "price": 9.99,
+    "description": "Alitas crujientes bañadas en salsa BBQ casera",
+    "image": "https://images.unsplash.com/photo-1588723382305-4f59a0dc7c2c?w=400&h=300&fit=crop",
+    "rating": 4.7
+  },
+  {
+    "id": 4,
+    "name": "Filete de Res",
+    "categoryId": 2,
+    "price": 24.99,
+    "description": "Filete premium a la parrilla con champiñones y papas",
+    "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop",
+    "rating": 4.9
+  },
+  {
+    "id": 5,
+    "name": "Salmón a la Mantequilla",
+    "categoryId": 2,
+    "price": 22.99,
+    "description": "Salmón fresco a la mantequilla con limón y hierbas finas",
+    "image": "https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=400&h=300&fit=crop",
+    "rating": 4.8
+  },
+  {
+    "id": 6,
+    "name": "Pollo a la Criolla",
+    "categoryId": 2,
+    "price": 16.99,
+    "description": "Pollo tierno en salsa roja con vegetales frescos",
+    "image": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&h=300&fit=crop",
+    "rating": 4.7
+  },
+  {
+    "id": 7,
+    "name": "Spaghetti Carbonara",
+    "categoryId": 3,
+    "price": 14.99,
+    "description": "Pasta clásica con guanciale, huevo y queso parmesano",
+    "image": "https://images.unsplash.com/photo-1612874742237-6526221fcf4f?w=400&h=300&fit=crop",
+    "rating": 4.8
+  },
+  {
+    "id": 8,
+    "name": "Fettuccine Alfredo",
+    "categoryId": 3,
+    "price": 13.99,
+    "description": "Pasta fresca con salsa de crema y queso parmesano",
+    "image": "https://images.unsplash.com/photo-1645112411341-6c4ee32510b8?w=400&h=300&fit=crop",
+    "rating": 4.7
+  },
+  {
+    "id": 9,
+    "name": "Ravioli de Camarones",
+    "categoryId": 3,
+    "price": 18.99,
+    "description": "Ravioli relleno de camarones con salsa blanca",
+    "image": "https://images.unsplash.com/photo-1645112411341-6c4ee32510b8?w=400&h=300&fit=crop",
+    "rating": 4.9
+  },
+  {
+    "id": 10,
+    "name": "Tiramisú",
+    "categoryId": 4,
+    "price": 6.99,
+    "description": "Postre italiano con capas de bizcocho, café y crema mascarpone",
+    "image": "https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=400&h=300&fit=crop",
+    "rating": 4.9
+  },
+  {
+    "id": 11,
+    "name": "Cheesecake",
+    "categoryId": 4,
+    "price": 7.99,
+    "description": "Clásico cheesecake con base de galletas y topping de fresas",
+    "image": "https://images.unsplash.com/photo-1572695157566-231b3c3d6f85?w=400&h=300&fit=crop",
+    "rating": 4.8
+  },
+  {
+    "id": 12,
+    "name": "Brownies de Chocolate",
+    "categoryId": 4,
+    "price": 5.99,
+    "description": "Brownies caseros con chocolate derretido y nueces",
+    "image": "https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=400&h=300&fit=crop",
+    "rating": 4.7
+  },
+  {
+    "id": 13,
+    "name": "Jugo Natural",
+    "categoryId": 5,
+    "price": 4.99,
+    "description": "Jugo fresco de frutas de la temporada",
+    "image": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&h=300&fit=crop",
+    "rating": 4.6
+  },
+  {
+    "id": 14,
+    "name": "Vino Tinto Premium",
+    "categoryId": 5,
+    "price": 15.99,
+    "description": "Vino tinto de cosecha premium",
+    "image": "https://images.unsplash.com/photo-1608270861620-7911c6808908?w=400&h=300&fit=crop",
+    "rating": 4.8
+  },
+  {
+    "id": 15,
+    "name": "Cóctel Mojito",
+    "categoryId": 5,
+    "price": 9.99,
+    "description": "Refrescante mojito con ron blanco, hierbabuena y limón",
+    "image": "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=400&h=300&fit=crop",
+    "rating": 4.7
+  }
+]

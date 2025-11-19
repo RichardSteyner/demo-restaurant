@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  @apply bg-gray-50;
+}
+
+.container-app {
+  @apply min-h-screen flex flex-col;
+}
+
+.content-wrapper {
+  @apply flex-1;
+}
+
+.btn-primary {
+  @apply px-4 py-2 bg-secondary text-white rounded-lg font-semibold hover:bg-orange-600 transition duration-200;
+}
+
+.btn-secondary {
+  @apply px-4 py-2 bg-gray-200 text-primary rounded-lg font-semibold hover:bg-gray-300 transition duration-200;
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Entradas",
+    "icon": "🥗",
+    "description": "Deliciosas entradas para comenzar"
+  },
+  {
+    "id": 2,
+    "name": "Platos Principales",
+    "icon": "🍖",
+    "description": "Nuestros platos estrella"
+  },
+  {
+    "id": 3,
+    "name": "Pasta",
+    "icon": "🍝",
+    "description": "Pastas frescas y auténticas"
+  },
+  {
+    "id": 4,
+    "name": "Postres",
+    "icon": "🍰",
+    "description": "Dulces tentaciones"
+  },
+  {
+    "id": 5,
+    "name": "Bebidas",
+    "icon": "🥤",
+    "description": "Bebidas frescas y cócteles"
+  }
+]
