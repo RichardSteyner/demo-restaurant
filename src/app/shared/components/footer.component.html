@@ -39,15 +39,59 @@
 		<!-- Divider -->
 		<div class="border-t border-gray-700 pt-8">
 			<div class="flex flex-col md:flex-row justify-between items-center">
-				<p class="text-gray-400 text-sm">
-					&copy; {{ currentYear }} RestaurantPro. Todos los derechos reservados.
-				</p>
-				<div class="flex gap-6 text-gray-400 text-sm mt-4 md:mt-0">
-					<a href="#" class="hover:text-secondary transition">Política de Privacidad</a>
-					<a href="#" class="hover:text-secondary transition">Términos de Servicio</a>
-					<a href="#" class="hover:text-secondary transition">Cookies</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</footer>
+				<footer class="bg-primary text-white">
+					<div class="container mx-auto px-4 py-12">
+						<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+							<!-- About -->
+							<div>
+								<h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+									<span class="text-2xl">🍽️</span> RestaurantPro
+								</h3>
+								<p class="text-gray-300 text-sm">
+									Disfrutando de la mejor experiencia culinaria desde 2024. Comida fresca, servicio
+									excepcional.
+								</p>
+							</div>
+
+							<!-- Quick Links -->
+							<div>
+								<h4 class="text-lg font-bold mb-4">Enlaces Rápidos</h4>
+								<ul class="space-y-2 text-gray-300 text-sm">
+									<li><a href="#" class="hover:text-secondary transition">Menú</a></li>
+									<li><a href="#" class="hover:text-secondary transition">Reservas</a></li>
+									<li><a href="#" class="hover:text-secondary transition">Promociones</a></li>
+									<li><a href="#" class="hover:text-secondary transition">Ubicaciones</a></li>
+								</ul>
+							</div>
+
+							<!-- Contact & Social -->
+							<div>
+								<h4 class="text-lg font-bold mb-4">Contacto</h4>
+								<p class="text-gray-300 text-sm mb-2">📞 +1 (555) 123-4567</p>
+								<p class="text-gray-300 text-sm mb-4">📧 info&#64;restaurantpro.com</p>
+								<div class="flex gap-3">
+									<a href="#" class="hover:text-secondary transition text-2xl">📱</a>
+									<a href="#" class="hover:text-secondary transition text-2xl">👍</a>
+									<a href="#" class="hover:text-secondary transition text-2xl">📷</a>
+									<a href="#" class="hover:text-secondary transition text-2xl">𝕏</a>
+								</div>
+							</div>
+						</div>
+
+						<!-- Divider -->
+						<div class="border-t border-gray-700 pt-8">
+							<div class="flex flex-col md:flex-row justify-between items-center">
+								<p class="text-gray-400 text-sm">
+									&copy; {{ currentYear }} RestaurantPro. Todos los derechos reservados.
+								</p>
+								<div class="flex gap-6 text-gray-400 text-sm mt-4 md:mt-0">
+									<a href="#" class="hover:text-secondary transition">Política de Privacidad</a>
+									<a href="#" class="hover:text-secondary transition">Términos de Servicio</a>
+									<a href="#" class="hover:text-secondary transition">Cookies</a>
+									<a routerLink="/seller/dashboard" class="hover:text-secondary transition">Acceso
+										Vendedores</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</footer>

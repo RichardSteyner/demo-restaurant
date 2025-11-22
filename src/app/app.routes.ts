@@ -32,6 +32,14 @@ export const routes: Routes = [
     component: ContactComponent
   },
   {
+    path: 'seller/dashboard',
+    loadComponent: () => import('./features/seller/seller-dashboard.component').then(m => m.SellerDashboardComponent)
+  },
+  {
+    path: 'seller/order',
+    loadComponent: () => import('./features/seller/seller-order.component').then(m => m.SellerOrderComponent)
+  },
+  {
     path: '**',
     redirectTo: ''
   }
