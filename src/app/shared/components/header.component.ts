@@ -5,8 +5,12 @@ import { CartService } from '../../core/cart.service';
 
 @Component({
   selector: 'app-header',
+  standalone: true,
   imports: [CommonModule, RouterLink, RouterLinkActive],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    'class': 'sticky top-0 z-50 block w-full'
+  },
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
