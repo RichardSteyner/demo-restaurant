@@ -5,6 +5,7 @@ import { CartComponent } from './features/cart/cart.component';
 import { CheckoutComponent } from './features/order/checkout.component';
 import { AboutComponent } from './features/about/about.component';
 import { ContactComponent } from './features/contact/contact.component';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -32,11 +33,17 @@ export const routes: Routes = [
     component: ContactComponent
   },
   {
+    path: 'seller/login',
+    loadComponent: () => import('./features/seller/login/login.component').then(m => m.LoginComponent)
+  },
+  {
     path: 'seller/dashboard',
+    canActivate: [authGuard],
     loadComponent: () => import('./features/seller/seller-dashboard.component').then(m => m.SellerDashboardComponent)
   },
   {
     path: 'seller/order',
+    canActivate: [authGuard],
     loadComponent: () => import('./features/seller/seller-order.component').then(m => m.SellerOrderComponent)
   },
   {
