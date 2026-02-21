@@ -25,30 +25,36 @@
 				<div class="relative">
 					<a routerLink="/cart" class="flex items-center gap-2 text-xl hover:text-secondary transition">
 						🛒
-						<span *ngIf="(cartItemsCount$ | async) as count" [class.hidden]="count === 0"
-							class="absolute -top-2 -right-2 bg-secondary text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
-							{{ count }}
-						</span>
+						@if (cartItemsCount(); as count) {
+							@if (count > 0) {
+								<span class="absolute -top-2 -right-2 bg-secondary text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">
+									{{ count }}
+								</span>
+							}
+						}
 					</a>
 				</div>
 
 				<!-- Mobile Menu Button -->
 				<button (click)="toggleMenu()" class="md:hidden text-xl">
-					{{ isMenuOpen ? '✕' : '☰' }}
+					{{ isMenuOpen() ? '✕' : '☰' }}
 				</button>
 			</div>
 		</div>
 
 		<!-- Mobile Navigation -->
-		<nav *ngIf="isMenuOpen" class="md:hidden pb-4 border-t border-gray-700">
-			<a routerLink="/" (click)="closeMenu()"
-				class="block py-2 text-secondary hover:text-white transition">Inicio</a>
-			<a routerLink="/menu" (click)="closeMenu()"
-				class="block py-2 text-secondary hover:text-white transition">Menú</a>
-			<a routerLink="/about" (click)="closeMenu()"
-				class="block py-2 text-secondary hover:text-white transition">Acerca de</a>
-			<a routerLink="/contact" (click)="closeMenu()"
-				class="block py-2 text-secondary hover:text-white transition">Contacto</a>
-		</nav>
+		@if (isMenuOpen()) {
+			<nav class="md:hidden pb-4 border-t border-gray-700">
+				<a routerLink="/" (click)="closeMenu()"
+					class="block py-2 text-secondary hover:text-white transition">Inicio</a>
+				<a routerLink="/menu" (click)="closeMenu()"
+					class="block py-2 text-secondary hover:text-white transition">Menú</a>
+				<a routerLink="/about" (click)="closeMenu()"
+					class="block py-2 text-secondary hover:text-white transition">Acerca de</a>
+				<a routerLink="/contact" (click)="closeMenu()"
+					class="block py-2 text-secondary hover:text-white transition">Contacto</a>
+			</nav>
+		}
+
 	</div>
 </header>

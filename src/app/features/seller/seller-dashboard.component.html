@@ -1,7 +1,8 @@
 <div class="container mx-auto px-4 py-8">
   <div class="flex justify-between items-center mb-8">
     <h1 class="text-3xl font-bold text-gray-900">Panel de Vendedor</h1>
-    <a routerLink="/seller/order" class="bg-secondary hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg transition-colors flex items-center gap-2">
+    <a routerLink="/seller/order"
+      class="bg-secondary hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg transition-colors flex items-center gap-2">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
       </svg>
@@ -10,11 +11,8 @@
   </div>
 
   <div class="grid gap-6">
-    <div *ngIf="(orders$ | async)?.length === 0" class="text-center py-12 bg-white rounded-lg shadow">
-      <p class="text-gray-500 text-lg">No hay órdenes activas</p>
-    </div>
-
-    <div *ngFor="let order of orders$ | async" class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-100">
+    @for (order of orders(); track order.id) {
+    <div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-100">
       <div class="p-6">
         <div class="flex flex-wrap justify-between items-start gap-4 mb-4">
           <div>
@@ -37,39 +35,51 @@
 
         <div class="border-t border-gray-100 py-4">
           <ul class="space-y-2">
-            <li *ngFor="let item of order.items" class="flex justify-between text-sm">
+            @for (item of order.items; track item.product.id) {
+            <li class="flex justify-between text-sm">
               <span class="text-gray-700">{{item.quantity}}x {{item.product.name}}</span>
               <span class="text-gray-900 font-medium">${{item.product.price * item.quantity | number:'1.2-2'}}</span>
             </li>
+            }
           </ul>
         </div>
 
         <div class="border-t border-gray-100 pt-4 flex flex-wrap gap-2 justify-end">
-          <button *ngIf="order.status === 'pending'" 
-                  (click)="updateStatus(order.id, 'confirmed')"
-                  class="px-4 py-2 bg-blue-50 text-blue-600 rounded hover:bg-blue-100 font-medium text-sm transition-colors">
+          @if (order.status === 'pending') {
+          <button (click)="updateStatus(order.id, 'confirmed')"
+            class="px-4 py-2 bg-blue-50 text-blue-600 rounded hover:bg-blue-100 font-medium text-sm transition-colors">
             Confirmar
           </button>
-          
-          <button *ngIf="order.status === 'confirmed'" 
-                  (click)="updateStatus(order.id, 'preparing')"
-                  class="px-4 py-2 bg-purple-50 text-purple-600 rounded hover:bg-purple-100 font-medium text-sm transition-colors">
+          }
+
+          @if (order.status === 'confirmed') {
+          <button (click)="updateStatus(order.id, 'preparing')"
+            class="px-4 py-2 bg-purple-50 text-purple-600 rounded hover:bg-purple-100 font-medium text-sm transition-colors">
             Empezar Preparación
           </button>
-          
-          <button *ngIf="order.status === 'preparing'" 
-                  (click)="updateStatus(order.id, 'ready')"
-                  class="px-4 py-2 bg-green-50 text-green-600 rounded hover:bg-green-100 font-medium text-sm transition-colors">
+          }
+
+          @if (order.status === 'preparing') {
+          <button (click)="updateStatus(order.id, 'ready')"
+            class="px-4 py-2 bg-green-50 text-green-600 rounded hover:bg-green-100 font-medium text-sm transition-colors">
             Marcar Listo
           </button>
-          
-          <button *ngIf="order.status === 'ready'" 
-                  (click)="updateStatus(order.id, 'delivered')"
-                  class="px-4 py-2 bg-gray-100 text-gray-600 rounded hover:bg-gray-200 font-medium text-sm transition-colors">
+          }
+
+          @if (order.status === 'ready') {
+          <button (click)="updateStatus(order.id, 'delivered')"
+            class="px-4 py-2 bg-gray-100 text-gray-600 rounded hover:bg-gray-200 font-medium text-sm transition-colors">
             Finalizar Entrega
           </button>
+          }
         </div>
       </div>
     </div>
+    } @empty {
+    <div class="text-center py-12 bg-white rounded-lg shadow">
+      <p class="text-gray-500 text-lg">No hay órdenes activas</p>
+    </div>
+    }
   </div>
+
 </div>

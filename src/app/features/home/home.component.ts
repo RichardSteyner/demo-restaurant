@@ -5,10 +5,10 @@ import { HeroComponent } from '../../shared/components/hero.component';
 
 @Component({
   selector: 'app-home',
-  standalone: true,
   imports: [CommonModule, RouterLink, HeroComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {}
+
+export class HomeComponent { }

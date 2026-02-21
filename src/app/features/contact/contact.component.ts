@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
-  standalone: true,
   imports: [CommonModule, FormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -92,4 +91,4 @@ import { FormsModule } from '@angular/forms';
     </div>
   `
 })
-export class ContactComponent {}
+export class ContactComponent { }

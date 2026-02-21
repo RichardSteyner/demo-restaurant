@@ -4,7 +4,6 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-hero',
-  standalone: true,
   imports: [CommonModule, RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -25,4 +24,5 @@ import { RouterLink } from '@angular/router';
     </section>
   `
 })
-export class HeroComponent {}
+
+export class HeroComponent { }

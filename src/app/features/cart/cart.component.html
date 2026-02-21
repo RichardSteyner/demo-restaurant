@@ -8,13 +8,15 @@
 	<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
 		<!-- Items List -->
 		<div class="lg:col-span-2">
-			<div *ngIf="(cartItems$ | async)?.length === 0" class="bg-white rounded-lg shadow p-8 text-center">
+			@if (cartItems().length === 0) {
+			<div class="bg-white rounded-lg shadow p-8 text-center">
 				<p class="text-gray-600 text-lg mb-4">Tu carrito está vacío</p>
 				<a routerLink="/menu" class="btn-primary">Continuar Comprando</a>
 			</div>
-
-			<div *ngIf="(cartItems$ | async)?.length! > 0" class="space-y-4">
-				<div *ngFor="let item of (cartItems$ | async)" class="bg-white rounded-lg shadow p-4">
+			} @else {
+			<div class="space-y-4">
+				@for (item of cartItems(); track item.product.id) {
+				<div class="bg-white rounded-lg shadow p-4">
 					<div class="flex gap-4">
 						<!-- Product Image -->
 						<img [src]="item.product.image" [alt]="item.product.name"
@@ -51,7 +53,9 @@
 						</div>
 					</div>
 				</div>
+				}
 			</div>
+			}
 		</div>
 
 		<!-- Order Summary -->
@@ -62,33 +66,32 @@
 				<div class="space-y-3 mb-6 pb-6 border-b">
 					<div class="flex justify-between">
 						<span>Subtotal:</span>
-						<span class="font-semibold">$ {{ (total$ | async)?.toFixed(2) }}</span>
+						<span class="font-semibold">$ {{ total().toFixed(2) }}</span>
 					</div>
 					<div class="flex justify-between">
 						<span>Envío:</span>
 						<span class="font-semibold">$ 5.00</span>
 					</div>
 					<div class="flex justify-between">
-						<span>Impuestos:</span>
-						<span class="font-semibold">$ {{ ((total$ | async) ? ((total$ | async)! * 0.08).toFixed(2) :
-							'0.00') }}</span>
+						<span>Impuestos (8%):</span>
+						<span class="font-semibold">$ {{ (total() * 0.08).toFixed(2) }}</span>
 					</div>
 				</div>
 
 				<div class="flex justify-between mb-6 text-xl font-bold text-secondary">
 					<span>Total:</span>
-					<span>$ {{ ((total$ | async) ? ((total$ | async)! + 5 + ((total$ | async)! * 0.08)).toFixed(2) :
-						'0.00') }}</span>
+					<span>$ {{ (total() + 5 + (total() * 0.08)).toFixed(2) }}</span>
 				</div>
 
-				<button *ngIf="(cartItems$ | async)?.length! > 0" routerLink="/checkout"
-					class="btn-primary w-full mb-3">
+				@if (cartItems().length > 0) {
+				<button routerLink="/checkout" class="btn-primary w-full mb-3">
 					Proceder al Pago
 				</button>
 
-				<button *ngIf="(cartItems$ | async)?.length! > 0" (click)="clearCart()" class="btn-secondary w-full">
+				<button (click)="clearCart()" class="btn-secondary w-full">
 					Vaciar Carrito
 				</button>
+				}
 
 				<a routerLink="/menu" class="block text-center mt-3 text-secondary hover:text-orange-700 font-semibold">
 					← Continuar Comprando

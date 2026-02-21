@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-about',
-  standalone: true,
   imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -41,4 +40,4 @@ import { CommonModule } from '@angular/common';
     </div>
   `
 })
-export class AboutComponent {}
+export class AboutComponent { }

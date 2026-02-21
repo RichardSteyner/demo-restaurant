@@ -1,47 +1,40 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuService } from '../../core/menu.service';
 import { CartService } from '../../core/cart.service';
 import { ProductCardComponent } from '../../shared/components/product-card.component';
-import { Category, Product } from '../../core/models';
-import { Observable } from 'rxjs';
+import { Product } from '../../core/models';
 
 @Component({
   selector: 'app-menu',
-  standalone: true,
   imports: [CommonModule, ProductCardComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent implements OnInit {
-  categories$: Observable<Category[]>;
-  products$: Observable<Product[]>;
-  selectedCategoryId: number = 0;
-  filteredProducts$: Observable<Product[]>;
+export class MenuComponent {
+  private menuService = inject(MenuService);
+  private cartService = inject(CartService);
 
-  constructor(
-    private menuService: MenuService,
-    private cartService: CartService
-  ) {
-    this.categories$ = this.menuService.getCategories();
-    this.products$ = this.menuService.getProducts();
-    this.filteredProducts$ = this.products$;
-  }
+  categories = this.menuService.categories;
+  products = this.menuService.products;
+  selectedCategoryId = signal<number>(0);
 
-  ngOnInit(): void {}
+  filteredProducts = computed(() => {
+    const categoryId = this.selectedCategoryId();
+    const allProducts = this.products();
+    if (categoryId === 0) {
+      return allProducts;
+    }
+    return allProducts.filter(p => p.categoryId === categoryId);
+  });
 
   selectCategory(categoryId: number): void {
-    this.selectedCategoryId = categoryId;
-    if (categoryId === 0) {
-      this.filteredProducts$ = this.products$;
-    } else {
-      this.filteredProducts$ = this.menuService.getProductsByCategory(categoryId);
-    }
+    this.selectedCategoryId.set(categoryId);
   }
 
   onAddToCart(product: Product): void {
     this.cartService.addToCart(product, 1);
-    // Could add a toast notification here
   }
 }
+

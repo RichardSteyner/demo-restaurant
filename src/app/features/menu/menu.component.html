@@ -7,31 +7,32 @@
 
 	<!-- Category Filter -->
 	<div class="mb-8 flex flex-wrap gap-2 justify-center">
-		<button (click)="selectCategory(0)" [class.bg-secondary]="selectedCategoryId === 0"
-			[class.text-white]="selectedCategoryId === 0" [class.bg-gray-200]="selectedCategoryId !== 0"
-			[class.text-primary]="selectedCategoryId !== 0"
+		<button (click)="selectCategory(0)" [class.bg-secondary]="selectedCategoryId() === 0"
+			[class.text-white]="selectedCategoryId() === 0" [class.bg-gray-200]="selectedCategoryId() !== 0"
+			[class.text-primary]="selectedCategoryId() !== 0"
 			class="px-6 py-2 rounded-full font-semibold transition duration-200">
 			Todos
 		</button>
 
-		<button *ngFor="let category of (categories$ | async)" (click)="selectCategory(category.id)"
-			[class.bg-secondary]="selectedCategoryId === category.id"
-			[class.text-white]="selectedCategoryId === category.id"
-			[class.bg-gray-200]="selectedCategoryId !== category.id"
-			[class.text-primary]="selectedCategoryId !== category.id"
+		@for (category of categories(); track category.id) {
+		<button (click)="selectCategory(category.id)" [class.bg-secondary]="selectedCategoryId() === category.id"
+			[class.text-white]="selectedCategoryId() === category.id"
+			[class.bg-gray-200]="selectedCategoryId() !== category.id"
+			[class.text-primary]="selectedCategoryId() !== category.id"
 			class="px-6 py-2 rounded-full font-semibold transition duration-200 flex items-center gap-2">
 			{{ category.icon }} {{ category.name }}
 		</button>
+		}
 	</div>
 
 	<!-- Products Grid -->
 	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-		<app-product-card *ngFor="let product of (filteredProducts$ | async)" [product]="product"
-			(addToCart)="onAddToCart($event)"></app-product-card>
-	</div>
-
-	<!-- Empty State -->
-	<div *ngIf="!(filteredProducts$ | async)?.length" class="text-center py-12">
-		<p class="text-gray-600 text-lg">No hay productos en esta categoría</p>
+		@for (product of filteredProducts(); track product.id) {
+		<app-product-card [product]="product" (addToCart)="onAddToCart($event)"></app-product-card>
+		} @empty {
+		<div class="col-span-full text-center py-12">
+			<p class="text-gray-600 text-lg">No hay productos en esta categoría</p>
+		</div>
+		}
 	</div>
 </div>

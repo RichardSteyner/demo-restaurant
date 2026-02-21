@@ -1,28 +1,20 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CartService } from '../../core/cart.service';
-import { CartItem } from '../../core/models';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
-  standalone: true,
   imports: [CommonModule, RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
-  cartItems$: Observable<CartItem[]>;
-  total$: Observable<number>;
+export class CartComponent {
+  private cartService = inject(CartService);
 
-  constructor(private cartService: CartService) {
-    this.cartItems$ = this.cartService.getCartItems();
-    this.total$ = this.cartService.getCartTotal();
-  }
-
-  ngOnInit(): void {}
+  cartItems = this.cartService.items;
+  total = this.cartService.totalAmount;
 
   removeFromCart(productId: number): void {
     this.cartService.removeFromCart(productId);
@@ -38,3 +30,4 @@ export class CartComponent implements OnInit {
     }
   }
 }
+

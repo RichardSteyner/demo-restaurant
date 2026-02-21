@@ -1,42 +1,33 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
 import { CartService } from '../../core/cart.service';
 import { OrderService } from '../../core/order.service';
-import { CartItem } from '../../core/models';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-checkout',
-  standalone: true,
   imports: [CommonModule, FormsModule, RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })
-export class CheckoutComponent implements OnInit {
-  cartItems$: Observable<CartItem[]>;
-  total$: Observable<number>;
-  
-  customerName = '';
-  customerEmail = '';
-  customerPhone = '';
-  paymentMethod = 'credit-card';
-  isSubmitting = false;
-  orderConfirmed = false;
-  confirmedOrderId: number = 0;
+export class CheckoutComponent {
+  private cartService = inject(CartService);
+  private orderService = inject(OrderService);
+  private router = inject(Router);
 
-  constructor(
-    private cartService: CartService,
-    private orderService: OrderService,
-    private router: Router
-  ) {
-    this.cartItems$ = this.cartService.getCartItems();
-    this.total$ = this.cartService.getCartTotal();
-  }
+  cartItems = this.cartService.items;
+  total = this.cartService.totalAmount;
 
-  ngOnInit(): void {}
+  customerName = signal('');
+  customerEmail = signal('');
+  customerPhone = signal('');
+  paymentMethod = signal('credit-card');
+
+  isSubmitting = signal(false);
+  orderConfirmed = signal(false);
+  confirmedOrderId = signal<number>(0);
 
   getTotalWithTax(total: number): number {
     return total + 5 + (total * 0.08);
@@ -47,39 +38,35 @@ export class CheckoutComponent implements OnInit {
       return;
     }
 
-    this.isSubmitting = true;
+    this.isSubmitting.set(true);
 
     // Simulating payment processing
     setTimeout(() => {
-      this.cartItems$.subscribe(items => {
-        this.total$.subscribe(total => {
-          const order = this.orderService.createOrder(
-            items,
-            this.getTotalWithTax(total),
-            this.customerName,
-            this.customerEmail,
-            this.customerPhone
-          );
+      const order = this.orderService.createOrder(
+        this.cartItems(),
+        this.getTotalWithTax(this.total()),
+        this.customerName(),
+        this.customerEmail(),
+        this.customerPhone()
+      );
 
-          this.confirmedOrderId = order.id;
-          this.orderConfirmed = true;
-          this.isSubmitting = false;
-          this.cartService.clearCart();
-        });
-      });
+      this.confirmedOrderId.set(order.id);
+      this.orderConfirmed.set(true);
+      this.isSubmitting.set(false);
+      this.cartService.clearCart();
     }, 1500);
   }
 
   validateForm(): boolean {
-    if (!this.customerName.trim()) {
+    if (!this.customerName().trim()) {
       alert('Por favor ingresa tu nombre');
       return false;
     }
-    if (!this.customerEmail.trim() || !this.isValidEmail(this.customerEmail)) {
+    if (!this.customerEmail().trim() || !this.isValidEmail(this.customerEmail())) {
       alert('Por favor ingresa un email válido');
       return false;
     }
-    if (!this.customerPhone.trim()) {
+    if (!this.customerPhone().trim()) {
       alert('Por favor ingresa tu teléfono');
       return false;
     }
@@ -95,3 +82,4 @@ export class CheckoutComponent implements OnInit {
     this.router.navigate(['/menu']);
   }
 }
+
